@@ -5,26 +5,26 @@
 <mapper namespace="com.dsq.dao.BookMapper">
     <insert id="addBook" parameterType="Books">
         insert into ssmbuild.books(bookName, bookCounts,detail)
-        value (#{bookName},#{bookCounts},#{detail})
+        value (#{bookName},#{bookCounts},#{detail});
     </insert>
 
     <delete id="deleteBookById" parameterType="int">
-        delete form ssmbuild.books where bookID = #{bookId}
+        delete form ssmbuild.books where bookID = #{bookId};
     </delete>
 
     <update id="updateBook" parameterType="Books">
         update ssmbuild.books
         set bookName=#{bookName},bookCounts=#{bookCounts},detail=#{detail}
-        where bookID=#{bookID}
+        where bookID=#{bookID};
     </update>
 
     <select id="queryBookById" resultType="Books">
         select * from ssmbuild.books
-        where bookID= #{bookId}
+        where bookID= #{bookId};
     </select>
 
-    <select id="queryBookById" resultType="Books">
-        select * from ssmbuild.books
+    <select id="queryAllBook" resultType="Books">
+        select * from ssmbuild.books;
     </select>
 
 </mapper>
