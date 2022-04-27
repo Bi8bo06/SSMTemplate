@@ -5,7 +5,7 @@ import com.dsq.pojo.Books;
 
 import java.util.List;
 
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
     //service 调dao层
     private BookMapper bookMapper;
 
@@ -31,5 +31,9 @@ public class BookServiceImpl implements BookService{
 
     public List<Books> queryAllBook() {
         return bookMapper.queryAllBook();
+    }
+
+    public Books queryBookByName(String bookName) {
+        return bookMapper.queryBookByName(bookName);
     }
 }
