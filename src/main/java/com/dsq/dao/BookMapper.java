@@ -4,6 +4,7 @@ import com.dsq.pojo.Books;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookMapper {
 
@@ -24,4 +25,7 @@ public interface BookMapper {
 
     //根据书名查询书籍
     Books queryBookByName(@Param("bookName") String bookName);
+
+    //分页查询
+    List<Books> queryBookByLimit(Map<String, Integer> map);
 }

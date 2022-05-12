@@ -4,6 +4,7 @@ import com.dsq.dao.BookMapper;
 import com.dsq.pojo.Books;
 
 import java.util.List;
+import java.util.Map;
 
 public class BookServiceImpl implements BookService {
     //service 调dao层
@@ -35,5 +36,9 @@ public class BookServiceImpl implements BookService {
 
     public Books queryBookByName(String bookName) {
         return bookMapper.queryBookByName(bookName);
+    }
+
+    public List<Books> queryBookByLimit(Map<String, Integer> map) {
+        return bookMapper.queryBookByLimit(map);
     }
 }
