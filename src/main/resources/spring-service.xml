@@ -15,6 +15,10 @@
         <property name="bookMapper" ref="bookMapper"/>
     </bean>
 
+    <bean id="StudentServiceImpl" class="com.dsq.service.StudentServiceImpl">
+        <property name="studentMapper" ref="studentMapper"/>
+    </bean>
+
     <!--3.声明事务配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

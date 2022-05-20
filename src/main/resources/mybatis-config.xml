@@ -14,5 +14,7 @@
 
     <mappers>
         <mapper class="com.dsq.dao.BookMapper"/>
+
+        <mapper class="com.dsq.dao.StudentMapper"/>
     </mappers>
 </configuration>

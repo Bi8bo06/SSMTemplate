@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dsq.dao.StudentMapper">
+
+    <!--一对一级联查询-->
+    <resultMap id="stuAndCard" type="Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <!--property：指定映射到实体类的对象属性-->
+        <!--column：指定表中对应的字段（即查询返回的列名）-->
+        <!--javaType：指定映射到实体对象属性的类型-->
+        <!--select：指定引入嵌套查询的子SQL语句，改属性用于关联映射中的嵌套查询-->
+        <association property="studentCard" javaType="studentCard">
+            <id property="id" column="id"/>
+            <result property="studentId" column="studentId"/>
+        </association>
+    </resultMap>
+
+    <select id="queryStuById" parameterType="Integer" resultMap="stuAndCard">
+        select s.*,sc.studentId from ssmbuild.student s, studentCard sc
+        where s.cardId = sc.id AND s.id = #{id};
+    </select>
+
+
+    <!-- 一对多 根据id查询老师及其关联的学生信息 -->
+    <resultMap id="teaAndStu" type="Teacher">
+        <id property="id" column="id"/>
+        <result property="sex" column="sex"/>
+        <result property="name" column="name"/>
+        <!-- property：指定映射到实体类的对象属性-->
+        <!-- column：指定表中对应的字段（即查询返回的列名）-->
+        <!-- ofType：指定映射到实体对象属性的类型-->
+        <!-- javaType指定的是studentList对象属性的类型 -->
+        <!-- select：指定引入嵌套查询的子SQL语句，改属性用于关联映射中的嵌套查询-->
+        <collection property="studentList" ofType="Student" javaType="java.util.ArrayList">
+            <id property="id" column="sId"/>
+            <result property="name" column="sName"/>
+            <result property="sex" column="sSex"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryTeaById" parameterType="Integer" resultMap="teaAndStu">
+        select t.*,s.id as sId,s.name as sName,s.sex as sSex from ssmbuild.teacher t, student s
+        where t.id = s.teacherId and t.id=#{id}
+    </select>
+</mapper>
